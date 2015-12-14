@@ -1,0 +1,31 @@
+---
+vagrant_local:
+  vm:
+    name: drupal
+    hostname: drupal.dev
+    aliases:
+      - www.drupal.dev
+    ip: 33.33.33.103
+    memory: 2048
+    app_shared_folder:
+      source: drupal
+      target: /var/www/drupal
+server:
+  packages:
+    - git
+apache:
+  docroot: "{{ vagrant_local.vm.app_shared_folder.target }}"
+  servername: "{{ vagrant_local.vm.aliases.0 }}"
+mysql:
+  root_password: drupal
+  database: drupal
+  user: drupal
+  password: drupal
+php:
+  packages:
+    - php5-cli
+    - php5-intl
+    - php5-mcrypt
+    - php5-mysql
+    - php5-gd
+    - php5-curl

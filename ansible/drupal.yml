@@ -1,0 +1,11 @@
+---
+- hosts: all
+  remote_user: vagrant
+  vars_files:
+    - ../base_vm/ansible/vars/default.yml
+    - vars/drupal.yml
+    - [~/.personal_ansible_vm.yml, vars/drupal.yml]
+    - [../personal.yml, ~/.personal_ansible_vm.yml, vars/drupal.yml]
+  roles:
+    - common
+    - drupal

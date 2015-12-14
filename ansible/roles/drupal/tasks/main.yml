@@ -1,0 +1,7 @@
+---
+- name: Disable xdebug for performance gain
+  sudo: yes
+  shell: php5dismod xdebug
+  args:
+    removes: /etc/php5/apache2/conf.d/20-xdebug.ini
+  notify: restart apache
